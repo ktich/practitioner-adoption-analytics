@@ -1,0 +1,194 @@
+/* ── ECD Connect Brand Tokens ──────────────────────────────────── */
+:root {
+  --ecd-teal:        #1DBADF;
+  --ecd-green:       #83BB26;
+  --ecd-yellow:      #FFD525;
+  --ecd-pink:        #FF2180;
+  --ecd-navy:        #27385A;
+  --ecd-charcoal:    #2C2C2A;
+  --ecd-mid:         #5F5E5A;
+  --ecd-muted:       #888780;
+  --ecd-rule:        #D3D1C7;
+  --ecd-bg:          #FAFAF8;
+
+  --body-font:       'DM Sans', sans-serif;
+  --display-font:    'DM Serif Display', serif;
+}
+
+/* ── Base ──────────────────────────────────────────────────────── */
+body {
+  font-family: var(--body-font);
+  color: var(--ecd-charcoal);
+  background: var(--ecd-bg);
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display-font);
+  color: var(--ecd-navy);
+}
+
+h1 { font-size: 2.4rem; margin-bottom: 0.25rem; }
+h2 { font-size: 1.7rem; margin-top: 2.5rem; border-bottom: 2px solid var(--ecd-rule); padding-bottom: 0.4rem; }
+h3 { font-size: 1.2rem; color: var(--ecd-charcoal); margin-top: 1.8rem; }
+
+a { color: var(--ecd-teal); }
+a:hover { color: var(--ecd-navy); }
+
+/* ── Hero ──────────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, var(--ecd-navy) 0%, #1a4a6e 60%, #0e3050 100%);
+  color: white;
+  padding: 3.5rem 2.5rem 3rem;
+  margin: -1rem -1rem 2.5rem;
+  border-radius: 0 0 12px 12px;
+}
+
+.hero h1 {
+  color: white;
+  font-size: 2.6rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.hero .subtitle {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--body-font);
+}
+
+.hero .tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+
+/* ── Stat Cards ────────────────────────────────────────────────── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid var(--ecd-rule);
+  border-radius: 10px;
+  padding: 1.2rem 1rem 1rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card .stat-number {
+  font-family: var(--display-font);
+  font-size: 2rem;
+  color: var(--ecd-navy);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-card .stat-label {
+  font-size: 0.78rem;
+  color: var(--ecd-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.stat-card.accent-teal  { border-top: 4px solid var(--ecd-teal); }
+.stat-card.accent-green { border-top: 4px solid var(--ecd-green); }
+.stat-card.accent-yellow { border-top: 4px solid var(--ecd-yellow); }
+.stat-card.accent-pink  { border-top: 4px solid var(--ecd-pink); }
+
+/* ── Insight Callouts ──────────────────────────────────────────── */
+.insight-box {
+  background: white;
+  border-left: 4px solid var(--ecd-teal);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.insight-box.green  { border-left-color: var(--ecd-green); }
+.insight-box.yellow { border-left-color: var(--ecd-yellow); }
+.insight-box.pink   { border-left-color: var(--ecd-pink); }
+.insight-box.navy   { border-left-color: var(--ecd-navy); }
+
+.insight-box .insight-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ecd-teal);
+  margin-bottom: 0.3rem;
+}
+
+.insight-box.green  .insight-label { color: var(--ecd-green); }
+.insight-box.yellow .insight-label { color: #c49e00; }
+.insight-box.pink   .insight-label { color: var(--ecd-pink); }
+.insight-box.navy   .insight-label { color: var(--ecd-navy); }
+
+.insight-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ecd-charcoal);
+}
+
+/* ── Section labels ────────────────────────────────────────────── */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ecd-teal);
+  margin-bottom: 0.25rem;
+}
+
+/* ── Figure captions ───────────────────────────────────────────── */
+.figure-caption, figcaption {
+  font-size: 0.8rem;
+  color: var(--ecd-muted);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ── Quarto overrides ──────────────────────────────────────────── */
+.quarto-title-meta { display: none; }
+
+.navbar-brand { font-family: var(--body-font); font-weight: 600; }
+
+#TOC {
+  font-size: 0.85rem;
+}
+
+#TOC a {
+  color: var(--ecd-mid);
+}
+
+#TOC a:hover, #TOC .active {
+  color: var(--ecd-navy);
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.8rem; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Google Fonts import ───────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap');

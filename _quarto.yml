@@ -1,0 +1,17 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "ECD Connect · Practitioner Analytics"
+  search: false
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false
+    smooth-scroll: true
+    code-fold: true
+    code-tools: false
+    embed-resources: true

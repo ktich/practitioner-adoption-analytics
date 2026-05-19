@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Tokens ─────────────────────────────────────────────────────── */
+:root {
+  --teal:         #1DBADF;
+  --green:        #83BB26;
+  --yellow:       #FFD525;
+  --pink:         #FF2180;
+  --navy:         #27385A;
+  --light-teal:   #D2F1F9;
+  --light-green:  #E8F5D0;
+  --light-yellow: #FFF5C2;
+  --light-pink:   #FFD3E6;
+  --light-navy:   #D6DDED;
+}
+
+/* ── Base ───────────────────────────────────────────────────────── */
+body, p, li, td, th {
+  font-family: "Inter", sans-serif !important;
+}
+
+/* Hide Quarto auto-generated title block */
+.quarto-title-block,
+.quarto-title-meta,
+#title-block-header { display: none !important; }
+
+/* ── Hero ───────────────────────────────────────────────────────── */
+.hero {
+  background-color: var(--navy);
+  color: white;
+  padding: 2.5rem 2rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+}
+
+h1.hero-title {
+  font-family: "Inter", sans-serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: white !important;
+  line-height: 1.25;
+  margin: 0 0 0.5rem !important;
+  border: none !important;
+}
+
+p.hero-subtitle {
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 0.95rem;
+  margin: 0 0 1.25rem !important;
+}
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.tag {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Stat cards ─────────────────────────────────────────────────── */
+.stat-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.stat-card {
+  flex: 1 1 160px;
+  background-color: #EAF7FA;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+p.stat-number {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: var(--navy) !important;
+  margin: 0 0 0.25rem !important;
+  line-height: 1;
+}
+
+p.stat-label {
+  font-size: 0.9rem !important;
+  color: #212121 !important;
+  margin: 0 !important;
+  line-height: 1.3;
+}
+
+/* ── Insight boxes ──────────────────────────────────────────────── */
+.insight-box {
+  border-left: 4px solid var(--teal);
+  background-color: var(--light-teal);
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1.1rem;
+  margin: 1.25rem 0;
+}
+
+.insight-box.teal   { border-left-color: var(--teal);  background-color: var(--light-teal); }
+.insight-box.green  { border-left-color: var(--green); background-color: var(--light-green); }
+.insight-box.yellow { border-left-color: #b08a00;      background-color: var(--light-yellow); }
+.insight-box.pink   { border-left-color: var(--pink);  background-color: var(--light-pink); }
+.insight-box.navy   { border-left-color: var(--navy);  background-color: var(--light-navy); }
+
+p.insight-label {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--navy) !important;
+  margin: 0 0 0.35rem !important;
+}
+
+.insight-box p,
+.insight-box li {
+  font-size: 0.92rem !important;
+  color: #212121 !important;
+  margin: 0 !important;
+}
+
+.insight-box ol {
+  padding-left: 1.2rem;
+  margin: 0.4rem 0 0 !important;
+}
+
+.insight-box li { margin-bottom: 0.25rem !important; }
+
+/* ── Tables ─────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.95rem;
+  background: #fff;
+  border: 1px solid #E5E7EB;
+}
+
+th, td { padding: 0.75rem 1rem; text-align: left; }
+
+thead { background-color: #EAF7FA !important; color: var(--navy) !important; font-weight: 600; }
+
+tbody tr:nth-child(even) { background-color: #F9FBFC; }
+tbody tr:hover           { background-color: #E3F4F7; }
