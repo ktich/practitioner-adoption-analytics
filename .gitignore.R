@@ -10,9 +10,6 @@
   *_files/
   *_cache/
   
-  # Rendered output (let GitHub Actions build this)
-  docs/
-  
   # Data — never commit raw data files
   data/
   

@@ -22,9 +22,7 @@ A product analytics case study drawn from real usage data on ECD Connect, a digi
 
 ## Why this framing
 
-Most product analytics case studies are written for mature commercial apps with standard SaaS metrics. This one is different.
-
-ECD Connect operates in a context where users may have registered via a WhatsApp link at an outreach event, completing onboarding requires institutional cooperation, and the biggest adoption barrier is often structural rather than motivational. Understanding how adoption works here requires thinking differently about funnels, retention, and what conversion actually means.
+Most product analytics case studies are written for mature commercial apps with standard SaaS metrics. ECD Connect operates in a context where users may have registered via a WhatsApp link at an outreach event, completing onboarding requires institutional cooperation, and the biggest adoption barrier is often structural rather than motivational. Understanding how adoption works here requires thinking differently about funnels, retention, and what conversion actually means.
 
 ---
 
