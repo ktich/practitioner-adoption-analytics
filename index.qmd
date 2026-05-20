@@ -38,7 +38,7 @@ library(scales)
 
 ## Context: The problem this platform is trying to solve
 
-Early childhood education (ECD) in South Africa is under-resourced and fragmented. Most of the sector's ~40,000 preschools operate informally, with no digital records and no way to systematically track whether children are attending or developing well.
+Early childhood education (ECD) in South Africa is under-resourced and fragmented. Most of the sector's over 40,000 preschools operate informally, with no digital records and no way to systematically track whether children are attending or developing well.
 
 ECD Connect is a live digital platform giving ECD practitioners tools to track attendance, monitor child development, manage finances, and access teaching resources. It currently serves 3,000+ registered users across South Africa.
 
@@ -58,10 +58,10 @@ Data covers ECD Connect App (open access) and ECD Connect Partner (white-label) 
   <div class="stat-card teal"><p class="stat-number">3,276</p><p class="stat-label">Registered users</p></div>
   <div class="stat-card green"><p class="stat-number">1,384</p><p class="stat-label">Converted users (valid preschool)</p></div>
   <div class="stat-card yellow"><p class="stat-number">977</p><p class="stat-label">Preschools added</p></div>
-  <div class="stat-card pink"><p class="stat-number">4141</p><p class="stat-label">Children registered</p></div>
+  <div class="stat-card pink"><p class="stat-number">4,141</p><p class="stat-label">Children registered</p></div>
 </div>
 
-**Conversion rate: 42%** of registered users complete onboarding to the point of a valid preschool connection. Understanding why the remaining 59% don't, and what distinguishes those who do, is the focus of this analysis.
+**Conversion rate: 42%** of registered users complete onboarding to the point of a valid preschool connection. This analysis examines what drives conversion, which features sustain engagement, and what the data reveals about how practitioners actually adopt digital tools in this context.
 
 ---
 
@@ -268,7 +268,7 @@ The gap between grey (all users) and green (converted users) bars is the key sig
 
 <div class="insight-box teal">
 <p class="insight-label">Strongest hook feature</p>
-<p>Community Profile is the most-used feature overall and shows meaningful uptake even among non-converted users (15.6% vs 24.3%). This suggests practitioners are finding value in the community layer before completing onboarding — a strong signal for surfacing it earlier in the user journey.</p>
+<p>Community Profile is the most-used feature overall and shows meaningful uptake even among non-converted users (15.6% vs 24.3%). This suggests practitioners are finding value in the community layer before completing onboarding, a strong signal for surfacing it earlier in the user journey.</p>
 </div>
 
 <div class="insight-box green">
