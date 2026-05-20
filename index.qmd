@@ -164,7 +164,7 @@ ggplot(df_funnel, aes(x = fct_rev(step), y = count)) +
 
 The funnel reveals a two-stage dropout pattern that shapes the entire product strategy:
 
-**Stage 1: Identity friction (Steps 1-2).** 35% of users never complete basic profile steps. This likely reflects a mix of speculative registration via WhatsApp outreach, users who don't have documentation available at the time of signing up, and non-ECD-practitioners who joined to explore the platform. User support data suggests a meaningful subset are prospective practitioners looking for information rather than active users ready to onboard.
+**Stage 1: Identity friction (Steps 1-2).** 35% of users never complete basic profile steps. This likely reflects a mix of users who don't have documentation available at the time of signing up, non-ECD-practitioners who joined to explore the platform and people who joined out of curiosity after seeing the platform mentioned in their networks. User support data suggests a meaningful subset are prospective practitioners looking for information rather than active users ready to onboard.
 
 **Stage 2: Structural barriers (Steps 3-5).** Connecting to a preschool and adding children requires institutional access. A practitioner who wants to use the app but isn't the registered principal is effectively blocked. In addition, practitioners joining mid-year at larger schools also flag child registration as a friction point: adding a full class roster manually is a significant upfront time investment.
 
@@ -264,11 +264,11 @@ ggplot(df_long, aes(x = feature, y = pct, fill = group)) +
 
 ### Reading the feature data
 
-The gap between grey (all users) and green (converted users) bars is the key signal. Large gaps indicate depth features used after commitment is established. Small gaps indicate hook features used regardless of onboarding status.
+The gap between grey (all users) and green (converted users) bars is the key signal. Features where the converted bar is much larger than the all-users bar are used almost exclusively by practitioners who have fully onboarded. Features where the two bars are close together are used by both explorers and committed users, suggesting they have value even before a practitioner has completed setup.
 
 <div class="insight-box teal">
 <p class="insight-label">Strongest hook feature</p>
-<p>Community Profile is the most-used feature overall and shows meaningful uptake even among non-converted users (15.6% vs 24.3%). This suggests practitioners are finding value in the community layer before completing onboarding, a strong signal for surfacing it earlier in the user journey.</p>
+<p>Community Profile is the most-used feature overall and shows uptake even among non-converted users (15.6% vs 24.3%). This suggests the community layer has broad appeal across different user types and onboarding stages, which is worth considering when thinking about how new users are introduced to the platform.</p>
 </div>
 
 <div class="insight-box green">
@@ -278,16 +278,16 @@ The gap between grey (all users) and green (converted users) bars is the key sig
 
 <div class="insight-box pink">
 <p class="insight-label">Watch list</p>
-<p>Finance tools and Progress Reports show low adoption across both groups. Finance likely reflects a trust barrier — practitioners need confidence in the platform before logging sensitive financial data. Training and Self Assessment also show low numbers, though both features were released significantly later than others so direct comparison is limited.</p>
+<p>Finance tools and Progress Reports show low adoption across both groups. Finance usage might reflects a trust barrier: practitioners need confidence in the platform before logging sensitive financial data. Training and Self Assessment also show low numbers, though both features were released significantly later than others so direct comparison is limited.</p>
 </div>
 
 ---
 
-## Part 3: The retention cliff
+## Part 3: First-day dropout
 
 ### What the data shows
 
-69% of registered users were last seen on the same day they registered. The remaining 31% return at least once, and among those who do, a consistent pattern emerges: the longer a user stays active, the more likely they are to have converted. Conversion rate rises from 31% among same-day users to 95% among users active for 180 or more days.
+69% of registered users were last seen on the same day they registered. This is the dominant pattern: most users open the app once and do not return. Among those who do return, conversion rates are higher, but the returning group is small enough that the overall picture is one of early and decisive dropout rather than gradual attrition.
 
 ```{r cliff}
 df_cliff <- read_csv("~/Desktop/data/data-usage/retention-cliff.csv")
@@ -310,11 +310,11 @@ ggplot(df_cliff, aes(x = days_active_bucket, y = users, fill = conversion_status
   ) +
   scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.08))) +
   labs(
-    title    = "ECD Connect: Retention and conversion by active window",
+    title    = "ECD Connect: User activity window and conversion status",
     subtitle = "Users grouped by days between registration and last login | OA & WL tenants",
     x        = NULL,
     y        = "Number of users",
-    caption  = "Deduplicated by phone number. Same-day bucket may include users who completed setup in a single session."
+    caption  = "Deduplicated by phone number. Same-day bucket includes users who completed setup in a single session and did not return."
   ) +
   theme_minimal(base_size = 12) +
   theme(
@@ -334,49 +334,56 @@ ggplot(df_cliff, aes(x = days_active_bucket, y = users, fill = conversion_status
 
 ### Reading the chart
 
-Each bar shows users in that active window, split by conversion status. Conversion rate rises consistently with time in the app: 31% of same-day users converted, rising to 47% at 1-2 days, 58% at 3-6 days, 74% at 30-89 days, and 95% among users active for 180 or more days.
+The same-day bucket dominates. Of the 2,276 same-day users, 713 (31%) converted, likely principals who set up their preschool in a single session and then went quiet. The remaining 1,563 registered and left without converting.
+
+Users who returned after day one are a much smaller group but convert at higher rates: 47% at 1-2 days, 58% at 3-6 days, reaching 95% among users active for 180 or more days. The data cannot answer whether this reflects the platform working better over time, or simply that more committed users were always more likely to return.
 
 <div class="insight-box teal">
-<p class="insight-label">The cliff is real</p>
-<p>69% of users never return after registration day. Reminders and nudges are unlikely to move this group. The barrier is structural: users who were never ready to onboard, were blocked by the principal model, or joined out of curiosity rather than immediate intent.</p>
-</div>
-
-<div class="insight-box green">
-<p class="insight-label">Time and conversion reinforce each other</p>
-<p>Users who stay active longer convert at higher rates, and converted users stay active longer. Anything that accelerates time-to-conversion also improves long-term retention. These are not separate problems to solve.</p>
+<p class="insight-label">Most dropout is immediate</p>
+<p>69% of users never return after registration day. The barriers are likely structural rather than product-related: users who were not ready to onboard, were blocked by the principal model, or registered out of curiosity rather than immediate intent. Reminders and nudges have not moved this group in practice.</p>
 </div>
 
 <div class="insight-box yellow">
-<p class="insight-label">Same-day converted users are a distinct group</p>
-<p>713 users both converted and were last seen on registration day, likely principals who set up their preschool in a single session and then went quiet. For this group the question is not activation but sustained habit formation.</p>
-</div>
-
-<div class="insight-box navy">
 <p class="insight-label">Design implication</p>
-<p>The priority intervention is not re-engagement campaigns for dormant users. The higher-leverage investment is in the first session: reducing the time between registration and a first moment of genuine value, so more users cross the threshold from curious to committed before they close the app on day one.</p>
+<p>Re-engagement campaigns are unlikely to recover users who left on day one. The higher-leverage investment is likely to be in the first session itself: reducing the time between registration and a first moment of genuine value, so more users find a reason to return before they close the app.</p>
 </div>
 
 ### What same-day users actually did
 
-Among users last seen on registration day, Community Profile was used by 10.4%, far ahead of any other feature. Activity Planning (3.3%) and Resources (2.6%) were the next most common. Attendance and Add Child were used by fewer than 2%.
+Among users last seen on registration day, Community Profile was used by 10.4%, far ahead of any other feature. Activity Planning (3.3%) and Resources (2.6%) were next. Attendance and Add Child were used by fewer than 2%.
 
-This is notable because Community Profile is not the most prominent feature on the home screen. Users are actively seeking it out by name, filling in a join form, and still not returning. The community concept draws people in. What happens after they join is not yet compelling enough to bring them back.
+Community Profile is not the most prominent feature on the home screen. Users are actively seeking it out by name, filling in a join form, and still not returning. Something about the community concept draws people in. What they find there is not yet compelling enough to bring them back.
 
 <div class="insight-box teal">
 <p class="insight-label">Community as an entry point</p>
-<p>Community Profile is used by explorers and committed users alike. It is the platform's most accessible hook. The design question for a second version of this product is not whether to build community, but what kind of community only makes sense inside a professional ECD tool, and cannot be replicated by WhatsApp groups that practitioners are already using.</p>
+<p>Community Profile is used by same-day explorers and long-term converted users alike. It is the platform's most broadly used feature. The design question for a new platform is: what kind of community only makes sense inside a professional ECD tool and cannot be replicated by the social media tools and groups practitioners are already using.</p>
 </div>
 
-<div class="insight-box navy">
-<p class="insight-label">What WhatsApp cannot do</p>
-<p>WhatsApp groups already exist for most of this user base and are active, familiar, and free. A community feature inside a product platform can do things WhatsApp cannot: surface content based on what a practitioner is doing in the app, show verified professional credentials, connect practitioners by district or school size, and provide structured resources rather than a chat scroll. The data suggests demand for connection is real. The design challenge is building something that adds value WhatsApp does not already provide.</p>
+### Inside Community: what users actually do
+
+Community is not prominently placed in the app but users who find it do engage with it. Of 642 who joined, 75% explored the directory and 66% wrote an About section. Engagement drops off before users reach the point of connecting with others.
+
+<div class="stat-block">
+  <div class="stat-card"><p class="stat-number">642</p><p class="stat-label">Joined Community</p></div>
+  <div class="stat-card"><p class="stat-number">484</p><p class="stat-label">Clicked ECD Heroes (75%)</p></div>
+  <div class="stat-card"><p class="stat-number">64</p><p class="stat-label">Sent a connection request (10%)</p></div>
+  <div class="stat-card"><p class="stat-number">20</p><p class="stat-label">Had a request accepted (3%)</p></div>
+</div>
+
+Only 10% of practitioners who join the community send a connection request, and of 11,406 requests sent, 10,834. have no response. A small number of users are mass-sending requests that almost nobody responds to.
+
+Profile completeness tells a similar story. 66% of community members wrote an About section, suggesting real intent to participate. Only 8% came back to update their profile after joining.
+
+<div class="insight-box yellow">
+<p class="insight-label">Design implication</p>
+<p>The high rate of exploration suggests demand for professional connection. The current mechanic for acting on that curiosity is not working. A new platform should design lower-friction ways for practitioners to find relevant peers before asking them to commit to a formal connection. Filtering by district, school size, or role; shared interest groups; or lightweight reactions to profiles would all reduce the commitment required to move from browsing to connecting.</p>
 </div>
 
 ---
 
 ## Part 4: Does organisational support change adoption?
 
-ECD Connect operates across two models: an open access version (ECD Connect, available to any practitioner in South Africa) and white-label versions built for specific partner organisations (Ntataise, Khululeka, and True North). White-label users have an organisation behind their onboarding — trained support staff, existing practitioner networks, and in some cases structured rollout programmes. Open access users are entirely self-directed.
+ECD Connect operates across two models: an open access version (ECD Connect App, available to any practitioner in South Africa) and white-label versions customised for specific partner organisations (Ntataise, Khululeka, and True North). White-label users have an organisation behind their onboarding: trained support staff, existing practitioner networks, and in some cases structured rollout programmes. Open access users are entirely self-directed.
 
 This section asks whether that organisational scaffolding makes a measurable difference to conversion and retention.
 
@@ -405,7 +412,7 @@ ggplot(df_tenants, aes(x = tenant_label, y = conversion_rate, fill = tenant_labe
     values = c(
       "ECD Connect (OA)"       = "#B4B2A9",
       "NtataiseConnect (WL)"   = "#1DBADF",
-      "KHULUconnect (WL)"      = "#83BB26",
+      "KHULUConnect (WL)"      = "#83BB26",
       "True North Connect (WL)"= "#FFD525"
     ),
     guide = "none"
@@ -435,15 +442,15 @@ ggplot(df_tenants, aes(x = tenant_label, y = conversion_rate, fill = tenant_labe
 
 ### Reading the data
 
-Two of the three white-label tenants convert at substantially higher rates than open access: Ntataise at 65.3% and Khululeka at 54.5%, compared to 40.8% for ECD Connect OA. Converted users on white-label tenants also stay active significantly longer — Ntataise and Khululeka converted users average over 70 days active, compared to 31 days for OA converted users.
+Two of the three white-label tenants convert at substantially higher rates than open access: Ntataise at 65.3% and Khululeka at 54.5%, compared to 40.8% for the ECD Connect App. Converted users on white-label tenants also stay active significantly longer. Ntataise and Khululeka converted users average over 70 days active, compared to 31 days for OA converted users.
 
-True North is the exception: conversion rate (36.4%) sits below OA, but their converted users are the most active of any tenant at an average of 88 days. With only 33 total users, True North's numbers should be treated cautiously, but the pattern may reflect the dynamics of a smaller, more tightly managed rollout where fewer users convert but those who do are highly committed.
+True North is the exception: conversion rate (36.4%) sits below OA, and engagement was limited. ECD Connect's partnership with True North has since ended. Their small sample size (33 users) makes any trend interpretation unreliable.
 
 Across all tenants, the gap between converted and non-converted avg days active is stark. Non-converted users barely engage regardless of tenant type, averaging under 5 days across the board.
 
 <div class="insight-box teal">
 <p class="insight-label">Organisational support drives conversion</p>
-<p>The data is consistent: users with an organisation behind their onboarding convert at higher rates and stay active longer. This is not primarily a product quality finding — the same product produces meaningfully different outcomes depending on the support model around it. For any new deployment of this platform, the onboarding support model is as important a design decision as the product itself.</p>
+<p>The data is consistent: users with an organisation behind their onboarding convert at higher rates and stay active longer. This is not primarily a product quality finding: the same product produces meaningfully different outcomes depending on the support model around it. For any new deployment of this platform, the onboarding support model is as important a design decision as the product itself.</p>
 </div>
 
 <div class="insight-box green">
@@ -451,21 +458,191 @@ Across all tenants, the gap between converted and non-converted avg days active 
 <p>40.8% conversion among entirely self-directed users with no organisational support is a meaningful baseline. These are practitioners who found the platform independently, registered without prompting, and nearly half completed full onboarding on their own. The OA channel is working; the question is what light-touch support could move that number further.</p>
 </div>
 
-<div class="insight-box yellow">
+<div class="insight-box navy">
 <p class="insight-label">Room to grow with coaching features</p>
-<p>None of the partner organisations have yet activated the platform's coaching feature, which enables structured support between coordinators and practitioners. Khululeka has plans to pilot this. If coaching drives the kind of engagement uplift seen in the broader WL vs OA comparison, it could be a meaningful lever for both conversion and long-term retention.</p>
+<p>None of the partner organisations have used the platform's coaching feature, which enables structured support for practitioners. Khululeka has plans to pilot this. If coaching drives the kind of engagement uplift seen in the broader WL vs OA comparison, it could be a meaningful lever for both conversion and long-term retention.</p>
 </div>
 
-<div class="insight-box navy">
-<p class="insight-label">Implication for SmartStart</p>
+<div class="insight-box yellow">
+<p class="insight-label">Design Implications</p>
 <p>A self-directed open access product will always face a conversion ceiling. The data suggests that ceiling sits somewhere around 40%. Pushing meaningfully beyond that requires organisational infrastructure: trained support staff, structured onboarding programmes, and principal-level engagement. Building a great product is necessary but not sufficient for adoption at scale in this context.</p>
 </div>
 
 ---
 
-## Part 5: Principals vs practitioners
+## Part 5: How has conversion changed over time?
 
-Of the 4,021 registered users, 1,473 are identifiable as principals, 182 as practitioners, and 2,366 remain unclassified — users who registered but never completed enough onboarding to take on either role. The 8:1 ratio of principals to practitioners is itself a finding: the platform is currently used almost entirely by principals, and practitioner adoption is entirely downstream of principal engagement.
+This section focuses on ECD Connect App (open access version), where monthly cohorts are large enough for meaningful trend analysis. White-label tenant monthly cohorts are too small, so overall WL vs OA comparison is covered in the section above.
+
+Several onboarding improvements were made during this period: SSO login (Google and Facebook) to reduce duplicate accounts from forgotten passwords, removal of the "add practitioners" step from the OA setup flow, and auto-assignment of the principal to their class to address confusion identified in training sessions. The data below examines whether these changes are visible in funnel and conversion metrics over time.
+
+```{r cohort-conversion}
+df_cohort <- read_csv("~/Desktop/data/data-usage/conversion-by-month-filter-oa.csv")
+
+df_cohort <- df_cohort |>
+  mutate(reg_month = as.Date(reg_month)) |>
+  filter(reg_month != as.Date("2025-12-01"))
+
+scale_factor <- max(df_cohort$registered) * 1.15 / 100
+
+ggplot(df_cohort, aes(x = reg_month)) +
+  geom_col(aes(y = registered), fill = "#D2F1F9", width = 20) +
+  geom_line(
+    aes(y = conversion_rate * scale_factor),
+    colour = "#1DBADF", linewidth = 1.2
+  ) +
+  geom_point(
+    aes(y = conversion_rate * scale_factor),
+    colour = "#1DBADF", size = 2.5
+  ) +
+  annotate(
+    "text",
+    x = as.Date("2026-01-01"),
+    y = max(df_cohort$registered) * 1.08,
+    label = "Start of year",
+    size = 3, colour = "#27385A", hjust = 0.5
+  ) +
+  scale_x_date(
+    date_labels = "%b %Y",
+    date_breaks = "2 months"
+  ) +
+  scale_y_continuous(
+    name = "Users registered",
+    labels = comma,
+    expand = expansion(mult = c(0, 0.15)),
+    limits = c(0, max(df_cohort$registered) * 1.15),
+    sec.axis = sec_axis(
+      ~ . / scale_factor,
+      name = "Conversion rate (%)",
+      labels = function(x) paste0(x, "%"),
+      breaks = seq(0, 100, by = 25)
+    )
+  ) +
+  labs(
+    title    = "ECD Connect App: Monthly registrations and conversion rate",
+    subtitle = "Open access tenant | April 2025 to May 2026",
+    x        = NULL,
+    caption  = paste0(
+      "Bars show users registered per month. Line shows % who completed onboarding to a valid preschool connection.\n",
+      "December 2025 excluded (n = 19, school holiday period). ",
+      "Recent months may understate conversion as users have had less time to complete onboarding."
+    )
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title         = element_text(face = "bold", size = 14, colour = "#2C2C2A"),
+    plot.subtitle      = element_text(size = 10, colour = "#5F5E5A", margin = margin(b = 12)),
+    plot.caption       = element_text(size = 8,  colour = "#888780", hjust = 0),
+    axis.text.x        = element_text(size = 9,  colour = "#888780", angle = 45, hjust = 1),
+    axis.text.y        = element_text(size = 9,  colour = "#888780"),
+    axis.title.y.left  = element_text(size = 9,  colour = "#888780"),
+    axis.title.y.right = element_text(size = 9,  colour = "#1DBADF"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(colour = "#D3D1C7", linewidth = 0.4),
+    panel.grid.minor   = element_blank(),
+    plot.margin        = margin(16, 24, 16, 16)
+  )
+```
+
+```{r funnel-by-month}
+df_funnel_month <- read_csv("~/Desktop/data/data-usage/funnel-by-month-filter-oa.csv") |>
+  mutate(reg_month = as.Date(reg_month)) |>
+  filter(reg_month != as.Date("2025-12-01")) |>
+  select(reg_month, pct_step1_name, pct_step3_preschool, pct_step5_child) |>
+  pivot_longer(
+    cols = c(pct_step1_name, pct_step3_preschool, pct_step5_child),
+    names_to = "step",
+    values_to = "pct"
+  ) |>
+  mutate(
+    step = case_when(
+      step == "pct_step1_name"       ~ "Step 1: Added name",
+      step == "pct_step3_preschool"  ~ "Step 3: Connected to preschool",
+      step == "pct_step5_child"      ~ "Step 5: Added a child"
+    ),
+    step = fct_relevel(step,
+      "Step 1: Added name",
+      "Step 3: Connected to preschool",
+      "Step 5: Added a child"
+    )
+  )
+
+ggplot(df_funnel_month, aes(x = reg_month, y = pct, colour = step)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2) +
+  scale_colour_manual(
+    values = c(
+      "Step 1: Added name"             = "#1DBADF",
+      "Step 3: Connected to preschool" = "#83BB26",
+      "Step 5: Added a child"          = "#FF2180"
+    ),
+    name = NULL
+  ) +
+  scale_x_date(
+    date_labels = "%b %Y",
+    date_breaks = "2 months"
+  ) +
+  scale_y_continuous(
+    labels = function(x) paste0(x, "%"),
+    limits = c(0, 100),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title    = "ECD Connect App: Funnel completion by registration month",
+    subtitle = "% of each monthly cohort completing key funnel steps | Open access tenant",
+    x        = NULL,
+    y        = "% of cohort",
+    caption  = "December 2025 excluded (n = 19). Recent months understate Step 5 as users have had less time to complete onboarding."
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title         = element_text(face = "bold", size = 14, colour = "#2C2C2A"),
+    plot.subtitle      = element_text(size = 10, colour = "#5F5E5A", margin = margin(b = 12)),
+    plot.caption       = element_text(size = 8,  colour = "#888780", hjust = 0),
+    axis.text.x        = element_text(size = 9,  colour = "#888780", angle = 45, hjust = 1),
+    axis.text.y        = element_text(size = 9,  colour = "#888780"),
+    legend.position    = "top",
+    legend.text        = element_text(size = 10, colour = "#2C2C2A"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(colour = "#D3D1C7", linewidth = 0.4),
+    panel.grid.minor   = element_blank(),
+    plot.margin        = margin(16, 24, 16, 16)
+  )
+```
+
+### Reading the charts
+
+Conversion rate has trended downward as volume has grown, from 55-58% in the first cohorts to 30-32% in early 2026. January 2026 is the clear outlier (185 users at 97.8% conversion) driven by start-of-year intent rather than any specific product change.
+
+The funnel chart tells a more nuanced story. Step 1 completion (adding a name) has been remarkably flat across all cohorts at 55-70%, suggesting identity friction is structural rather than something product changes can address through UX improvements alone. Step 3 (preschool connection) shows more variation and tracks closely with the conversion rate trend. Step 5 (adding a child) is low across all cohorts and appears to be declining in recent months, though this is partly a recency effect: newer cohorts have had less time to complete deeper onboarding steps.
+
+Several onboarding improvements were implemented during this period. The funnel data suggests these changes have not dramatically moved aggregate completion rates. This is consistent with a broader finding: the primary barriers to funnel completion are structural (user intent, institutional access, and timing relative to the school calendar) rather than UX friction that product changes alone can resolve. Changes like SSO likely improved data quality (fewer duplicate accounts) without being visible in conversion rate metrics. The auto-class-assignment change is too recent to have accumulated enough data for a clear before-and-after comparison.
+
+<div class="insight-box teal">
+<p class="insight-label">School calendar drives conversion quality</p>
+<p>The January 2026 spike is the clearest evidence that _when_ users register matters as much as how they find the platform. Practitioners who register at the start of the school year come in with clear intent to set up systems for the year ahead. Timing acquisition efforts around natural school calendar moments is likely to produce better conversion rates than volume-focused outreach throughout the year.</p>
+</div>
+
+<div class="insight-box green">
+<p class="insight-label">Growth brings in a broader audience</p>
+<p>The downward trend in conversion rate as volume grows reflects the platform reaching beyond its initial early adopter audience. Early users sought the platform out deliberately. Later growth brings in users who registered more speculatively. This is a normal pattern in platform growth, not a signal that something is broken.</p>
+</div>
+
+<div class="insight-box yellow">
+<p class="insight-label">Identity friction is structural, not a UX problem</p>
+<p>Step 1 and Step 2 completion rates have shown almost no improvement across cohorts despite product changes targeting the onboarding flow. The drop-off at these steps reflects users who register before they have documentation to hand, or who never intended to complete onboarding. This group is likely irreducible through product design alone and may require a different acquisition strategy rather than further onboarding improvements.</p>
+</div>
+
+<div class="insight-box navy">
+<p class="insight-label">High conversion does not equal sustained engagement</p>
+<p>The January 2026 cohort converted at 97.8% but retained at 8.6% after 30 days, consistent with other high-volume months. High intent at registration does not translate to sustained engagement. Users who complete setup quickly in a start-of-year window go quiet at the same rate as any other cohort, suggesting the barrier to return is not about initial motivation but about what the platform offers once setup is done.</p>
+</div>
+
+---
+
+## Part 6: Principals vs practitioners
+
+Of the 3,319 registered users, 1223 are identifiable as principals, 160 as practitioners, and 1,932 remain unclassified: users who registered but never completed enough onboarding to take on either role. The 8:1 ratio of principals to practitioners is itself a finding: the platform is currently used almost entirely by principals, and practitioner adoption is entirely downstream of principal engagement.
 
 ```{r role-features}
 df_roles <- read_csv("~/Desktop/data/data-usage/role-features.csv")
@@ -540,7 +717,7 @@ The chart shows feature usage rates within each role. Practitioners show higher 
 </div>
 
 <div class="insight-box navy">
-<p class="insight-label">Implication for SmartStart</p>
+<p class="insight-label">Implications</p>
 <p>Designing around the principal workflow is the right starting point: principals are the gatekeepers, the multipliers, and currently the primary users. But practitioners who do get access engage deeply with classroom features. A new platform should make it as easy as possible for principals to bring practitioners on, then design the practitioner experience around daily classroom workflows.</p>
 </div>
 
@@ -610,7 +787,7 @@ Note that 54% of converted users have no trackable feature events at all, meanin
 </div>
 
 <div class="insight-box navy">
-<p class="insight-label">Implication for SmartStart</p>
+<p class="insight-label">Implications</p>
 <p>A new platform should not assume a single onboarding path. Principals coming in with clear administrative intent need a fast route to preschool setup and child registration. Users coming in to explore need an easy on-ramp to community and content features before they hit the administrative setup wall. Designing for both intents from the start would likely improve conversion rates for both groups.</p>
 </div>
 
@@ -714,19 +891,22 @@ Seven findings stand out with direct implications for how a next-generation ECD 
 
 White-label tenants with active organisational support convert at 55-65%, compared to 41% for self-directed open access users. The product is identical. The difference is the support model around it. A new platform that relies on self-directed adoption will hit a ceiling around 40% conversion regardless of how good the product is. Structured onboarding support, principal-led rollout, and active partner engagement are not nice-to-haves — they are the primary driver of conversion beyond that ceiling.
 
-### 3. Principals are the gatekeepers and the bottleneck
+### 3. Timing of acquisition matters as much as volume
+Conversion quality varies significantly by when users register, independent of product changes or channel. Users who register at the start of the school year convert at dramatically higher rates than those who register mid-year. Outreach timed around natural school calendar moments — start of year, start of term — will consistently outperform volume-focused campaigns spread throughout the year. A new platform should build its acquisition strategy around the school calendar, not just channel reach.
+
+### 4. Principals are the gatekeepers and the bottleneck
 
 The platform has an 8:1 ratio of principals to practitioners. Practitioners cannot meaningfully use the platform until their principal has completed setup. Where principals engage, they bring their staff with them. Where they do not, the school does not engage regardless of practitioner willingness. Any new platform should be designed first and foremost for principals, with practitioner onboarding as a downstream consequence of principal engagement rather than a parallel track.
 
-### 4. Community is the strongest hook, but needs a clearer purpose
+### 5. Community is the strongest hook, but needs a clearer purpose
 
 Community Profile is the most-used feature overall, the most common first feature among converted users, and the only feature used at equal rates by principals and practitioners. It draws in users who never return and users who become the most engaged on the platform. The demand for professional connection is real. The design challenge is building something that adds value WhatsApp cannot already provide: verified professional credentials, contextual content, district-level peer connection, structured resources. A discussion board that competes with existing WhatsApp groups will not win. A professional infrastructure layer that WhatsApp cannot replicate might.
 
-### 5. The correlation between feature breadth and retention is real, but the causality is unclear
+### 6. The correlation between feature breadth and retention is real, but the causality is unclear
 
 Users who engage with more features stay active significantly longer. But this likely reflects a third factor: users who were already ready and willing to change their workflows naturally explore more features and stay longer. Users who were not ready tried one thing and left. The design implication is not simply to build more features or nudge users toward feature discovery. It is to attract users who are genuinely ready to change, and to offer them things paper cannot do.
 
-### 6. The platform has two distinct user types that need different design
+### 7. The platform has two distinct user types that need different design
 
 Principals manage the school: finances, staff, compliance, reporting. Practitioners manage the classroom: attendance, child development, lesson planning. The data shows these are genuinely different use cases with different feature preferences, different active windows, and different onboarding needs. Treating them as a single user type in product design produces a platform that serves neither particularly well. A new build should design the principal and practitioner experiences as related but distinct, with a clear handoff between them.
 
