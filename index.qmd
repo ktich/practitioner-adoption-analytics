@@ -241,7 +241,7 @@ ggplot(df_long, aes(x = feature, y = pct, fill = group)) +
     x        = NULL,
     y        = "% of users",
     caption  = paste0(
-      "All registered users n = 3,276 · Converted users (valid preschool connection) n = 1,263\n",
+      "All registered users n = 3,319 · Converted users (valid preschool connection) n = 1,388\n",
       "Converted users have completed onboarding; all others include trial and registered-only users"
     )
   ) +
@@ -278,7 +278,7 @@ The gap between grey (all users) and green (converted users) bars is the key sig
 
 <div class="insight-box pink">
 <p class="insight-label">Watch list</p>
-<p>Finance tools and Progress Reports show low adoption across both groups. Finance usage might reflects a trust barrier: practitioners need confidence in the platform before logging sensitive financial data. Training and Self Assessment also show low numbers, though both features were released significantly later than others so direct comparison is limited.</p>
+<p>Finance tools and Progress Reports show low adoption across both groups. Finance usage might reflect a trust barrier: practitioners need confidence in the platform before logging sensitive financial data. Training and Self Assessment also show low numbers, though both features were released significantly later than others so direct comparison is limited.</p>
 </div>
 
 ---
@@ -370,7 +370,7 @@ Community is not prominently placed in the app but users who find it do engage w
   <div class="stat-card"><p class="stat-number">20</p><p class="stat-label">Had a request accepted (3%)</p></div>
 </div>
 
-Only 10% of practitioners who join the community send a connection request, and of 11,406 requests sent, 10,834. have no response. A small number of users are mass-sending requests that almost nobody responds to.
+Only 10% of practitioners who join the community send a connection request, and of 11,406 requests sent, 10,834 have no response. A small number of users are mass-sending requests that almost nobody responds to.
 
 Profile completeness tells a similar story. 66% of community members wrote an About section, suggesting real intent to participate. Only 8% came back to update their profile after joining.
 
@@ -642,7 +642,7 @@ Several onboarding improvements were implemented during this period. The funnel 
 
 ## Part 6: Principals vs practitioners
 
-Of the 3,319 registered users, 1223 are identifiable as principals, 160 as practitioners, and 1,932 remain unclassified: users who registered but never completed enough onboarding to take on either role. The 8:1 ratio of principals to practitioners is itself a finding: the platform is currently used almost entirely by principals, and practitioner adoption is entirely downstream of principal engagement.
+Of the 3,319 registered users, 1,223 are identifiable as principals, 160 as practitioners, and 1,932 remain unclassified: users who registered but never completed enough onboarding to take on either role. The 8:1 ratio of principals to practitioners shows that the platform is currently used almost entirely by principals, and practitioner adoption is entirely downstream of principal engagement.
 
 ```{r role-features}
 df_roles <- read_csv("~/Desktop/data/data-usage/role-features.csv")
@@ -679,7 +679,7 @@ ggplot(df_roles, aes(x = feature, y = pct_of_role, fill = Role)) +
     subtitle = "% of principals and practitioners who have ever used each feature",
     x        = NULL,
     y        = "% of users",
-    caption  = "Principals n = 1,473 · Practitioners n = 182 · Excludes unclassified users"
+    caption  = "Principals n = 1,223 · Practitioners n = 160 · Excludes unclassified users"
   ) +
   theme_minimal(base_size = 12) +
   theme(
@@ -708,22 +708,17 @@ The chart shows feature usage rates within each role. Practitioners show higher 
 
 <div class="insight-box green">
 <p class="insight-label">Practitioners are the classroom users</p>
-<p>Once onboarded, practitioners use every classroom-facing feature at significantly higher rates than principals. Attendance is used by 40.6% of practitioners vs 10.2% of principals. Calendar (29.4% vs 9.4%) and Progress Reports (17.5% vs 5%) show the same pattern. Community Profile is the one exception, used at nearly identical rates by both roles (26.3% vs 25.9%), suggesting it serves a different need — professional connection rather than classroom management.</p>
+<p>Once onboarded, practitioners use every classroom-facing feature at significantly higher rates than principals. Attendance is used by 40.6% of practitioners vs 10.2% of principals. Calendar (29.4% vs 9.4%) and Progress Reports (17.5% vs 5%) show the same pattern. Community Profile is the one exception, used at nearly identical rates by both roles (26.3% vs 25.9%), suggesting it serves a different need.</p>
 </div>
 
-<div class="insight-box pink">
-<p class="insight-label">Principals do the admin, practitioners do the classroom work</p>
-<p>Income Statements is used by 12% of principals and virtually no practitioners, confirming the expected role split on administrative features. The data suggests the platform has naturally divided into two distinct use cases: principals managing the school, practitioners managing the classroom. A new platform build should design these two experiences more deliberately rather than treating all users as a single audience.</p>
-</div>
-
-<div class="insight-box navy">
-<p class="insight-label">Implications</p>
+<div class="insight-box yellow">
+<p class="insight-label">Design Implications</p>
 <p>Designing around the principal workflow is the right starting point: principals are the gatekeepers, the multipliers, and currently the primary users. But practitioners who do get access engage deeply with classroom features. A new platform should make it as easy as possible for principals to bring practitioners on, then design the practitioner experience around daily classroom workflows.</p>
 </div>
 
 ---
 
-## Part 6: Feature sequencing
+## Part 7: Feature sequencing
 
 Among converted users who used at least one feature, what did they do first? This matters for onboarding design: if there is a dominant entry point, that feature should be prominent in the first session experience.
 
@@ -754,7 +749,7 @@ ggplot(df_seq, aes(x = first_feature, y = pct_of_converted)) +
     subtitle = "% of converted users whose first discretionary feature use was each feature",
     x        = NULL,
     y        = "% of converted users",
-    caption  = "Excludes class creation (required onboarding step). Converted users n = 1,670."
+    caption  = "Excludes class creation (required onboarding step). Converted users n = 1,388."
   ) +
   theme_minimal(base_size = 12) +
   theme(
@@ -786,16 +781,11 @@ Note that 54% of converted users have no trackable feature events at all, meanin
 <p>The sequencing data suggests two types of converted user. The first goes straight to administrative setup: Add Child, Attendance, Income Statements. The second explores content and community first: Community Profile, Activity Planning, Resources. These are different user intents and may benefit from different onboarding paths rather than a single linear flow.</p>
 </div>
 
-<div class="insight-box navy">
-<p class="insight-label">Implications</p>
-<p>A new platform should not assume a single onboarding path. Principals coming in with clear administrative intent need a fast route to preschool setup and child registration. Users coming in to explore need an easy on-ramp to community and content features before they hit the administrative setup wall. Designing for both intents from the start would likely improve conversion rates for both groups.</p>
-</div>
-
 ---
 
-## Part 7: Feature breadth and retention
+## Part 8: Feature breadth and retention
 
-Do users who engage with more features stay active longer? The data suggests yes — strongly. But the relationship is worth interrogating carefully before drawing design conclusions.
+Users who engage with more features stay active longer: median active days rises from 0 for single-feature users to over 200 for users who engage with six or more. The relationship is consistent and steep, but the direction of causality is not clear.
 
 ```{r feature-breadth}
 df_breadth <- read_csv("~/Desktop/data/data-usage/feature-breadth.csv")
@@ -851,60 +841,54 @@ ggplot(df_breadth_clean, aes(x = features_bucket, y = median_days)) +
 
 ### Reading the data
 
-The relationship is steep and consistent. Users who engage with only one feature have a median active window of 0 days — more than half last seen on registration day. At 3 features the median jumps to 42 days. At 6-8 features it reaches 90-200 days. The 10 users who engaged with 9 or more features averaged 296 days active.
-
-Before drawing design conclusions, the causality question matters.
-
-<div class="insight-box yellow">
-<p class="insight-label">Correlation vs causation</p>
-<p>The obvious interpretation is that using more features drives retention. But the reverse is equally plausible: users who were already committed to going digital naturally explored more features and stayed longer, while users who were less ready tried one thing and left. Both retention and feature breadth may be downstream of a third factor — intent and readiness to change existing workflows. The data cannot distinguish between these two explanations.</p>
-</div>
+Users who engage with only one feature have a median active window of 0 days with more than half last seen on registration day. At 3 features the median jumps to 42 days. At 6-8 features it reaches 90-200 days. The 10 users who engaged with 9 or more features averaged 296 days active.
 
 <div class="insight-box teal">
 <p class="insight-label">The paper system problem</p>
-<p>Many ECD practitioners have been running paper attendance registers, paper child records, and paper income books for years. These systems work. They require no data, never crash, and fit into existing routines. A digital feature that replicates a paper workflow is asking practitioners to change a habit that is not broken, on a device that might run out of data, in the middle of a school day. The friction is real and the value exchange is not obvious from the practitioner's perspective.</p>
+<p>Many ECD practitioners already manage attendance, finances and child records on paper. For these users, a digital equivalent asks them to change a workflow that is not necessarily broken, on a device that costs data. Whether the value exchange is worth it is not obvious from the practitioner's perspective.</p>
 </div>
 
 <div class="insight-box green">
 <p class="insight-label">Genuine new value vs digital data collection</p>
-<p>The features that show the strongest hook behaviour — Community Profile, Activity Planning, Resources — are ones with no paper equivalent. There is no paper-based way to connect with practitioners across the province, access a structured curriculum library, or get personalised teaching resources. These features offer something genuinely new. Features like attendance registers and income tracking are valuable to funders and government for monitoring, but their value to the practitioner depends entirely on what they get back — automated reports, absence alerts, financial summaries — not just the act of entering data.</p>
+<p>The features with the strongest adoption (Community Profile, Activity Planning, Resources) have no direct paper equivalent. Features like attendance registers and income tracking replicate existing workflows. Even where these features offer a return in the form of automated reports, absence alerts, the value only materialises after significant data entry, which is itself a barrier for practitioners who already have working paper systems.</p>
 </div>
 
-<div class="insight-box navy">
-<p class="insight-label">The "so what?" test for SmartStart</p>
-<p>Every feature in a new platform build should pass the practitioner's "so what?" test: what do I get back from entering this data, beyond the act of entering it? Attendance tracking is valuable if it generates an absence alert, a monthly report the principal would otherwise compile by hand, or a record that satisfies a funder requirement without additional paperwork. Without that return, it is data collection dressed as a feature. The correlation between feature breadth and retention is real — but the design implication is not simply "build more features." It is "build features that give practitioners something they could not get from paper."</p>
+<div class="insight-box yellow">
+<p class="insight-label">Design implications</p>
+<p>Every feature in a new platform build should pass the practitioner's 'so what?' test: what does the practitioner get back from using this, beyond the act of using it? Features with no paper equivalent have a natural answer. Features that replicate existing workflows need to earn their place by offering something the paper version cannot.</p>
 </div>
 
 ---
 
 ## Implications for product design
 
-This analysis covers a platform serving 3,276 registered users across South Africa, from launch through May 2026. The findings are specific to this context but the patterns they reveal are relevant to any digital product targeting practitioners in under-resourced, low-infrastructure settings.
+This analysis covers a platform serving 3,319 registered users across South Africa, from launch through May 2026. The findings are specific to this context but the patterns they reveal are relevant to any digital product targeting practitioners in under-resourced, low-infrastructure settings.
 
 Seven findings stand out with direct implications for how a next-generation ECD platform should be designed.
 
-### 1. The first session is the only session for most users
+### 1. ECD Connect has meaningful traction in a difficult context
 
-69% of users were last seen on the day they registered. Reminders do not bring them back. The decision to adopt is made in the first interaction, not over time. This means the first session experience is the highest-leverage design investment in the entire product. Everything that reduces friction in that first session, from faster preschool connection to earlier access to genuinely useful features, will have a larger effect on adoption than any re-engagement campaign.
+A self-directed platform serving practitioners with no mandatory adoption requirement has converted 42% of registered users and built a base of over 1,200 principals. White-label tenants with organisational support convert at 55-65%. Practitioners who onboard fully engage deeply with classroom features. Community draws broad engagement across user types. In a low-resource context where digital adoption is challenging, these numbers represent real traction. The lessons are worth carrying into a new build.
 
-### 2. Organisational support matters as much as product quality
+### 2. The first session is the only session for most users
 
-White-label tenants with active organisational support convert at 55-65%, compared to 41% for self-directed open access users. The product is identical. The difference is the support model around it. A new platform that relies on self-directed adoption will hit a ceiling around 40% conversion regardless of how good the product is. Structured onboarding support, principal-led rollout, and active partner engagement are not nice-to-haves — they are the primary driver of conversion beyond that ceiling.
+69% of users were last seen on the day they registered. Reminders do not bring them back. The decision to adopt is made in the first interaction rather than over time. This means the first session experience is the highest-leverage design investment in the entire product. Everything that reduces friction in that first session, from faster preschool connection to earlier access to useful features, will have a larger effect on adoption than any re-engagement campaign.
 
-### 3. Timing of acquisition matters as much as volume
-Conversion quality varies significantly by when users register, independent of product changes or channel. Users who register at the start of the school year convert at dramatically higher rates than those who register mid-year. Outreach timed around natural school calendar moments — start of year, start of term — will consistently outperform volume-focused campaigns spread throughout the year. A new platform should build its acquisition strategy around the school calendar, not just channel reach.
+### 3. Organisational support matters as much as product quality
 
-### 4. Principals are the gatekeepers and the bottleneck
+White-label tenants with active organisational support convert at 55-65%, compared to 41% for self-directed open access users. The product is identical. The difference is the support model around it. A new platform that relies on self-directed adoption will likely hit a ceiling around 40% conversion regardless of how good the product is. Structured onboarding support, principal-led rollout, and active partner engagement are the primary driver of conversion beyond that ceiling.
+
+### 4. Timing of acquisition matters as much as volume
+
+Conversion quality varies significantly by when users register, independent of product changes or channel. Users who register at the start of the school year convert at dramatically higher rates than those who register mid-year. Outreach timed around natural school calendar moments (start of year, start of term) is likely to outperform volume-focused campaigns spread throughout the year. A new platform should build its acquisition strategy around the school calendar, not just channel reach.
+
+### 5. Principals are the gatekeepers and the bottleneck
 
 The platform has an 8:1 ratio of principals to practitioners. Practitioners cannot meaningfully use the platform until their principal has completed setup. Where principals engage, they bring their staff with them. Where they do not, the school does not engage regardless of practitioner willingness. Any new platform should be designed first and foremost for principals, with practitioner onboarding as a downstream consequence of principal engagement rather than a parallel track.
 
-### 5. Community is the strongest hook, but needs a clearer purpose
+### 6. Community is the strongest hook, but needs a clearer purpose
 
-Community Profile is the most-used feature overall, the most common first feature among converted users, and the only feature used at equal rates by principals and practitioners. It draws in users who never return and users who become the most engaged on the platform. The demand for professional connection is real. The design challenge is building something that adds value WhatsApp cannot already provide: verified professional credentials, contextual content, district-level peer connection, structured resources. A discussion board that competes with existing WhatsApp groups will not win. A professional infrastructure layer that WhatsApp cannot replicate might.
-
-### 6. The correlation between feature breadth and retention is real, but the causality is unclear
-
-Users who engage with more features stay active significantly longer. But this likely reflects a third factor: users who were already ready and willing to change their workflows naturally explore more features and stay longer. Users who were not ready tried one thing and left. The design implication is not simply to build more features or nudge users toward feature discovery. It is to attract users who are genuinely ready to change, and to offer them things paper cannot do.
+Community Profile is the most-used feature overall, the most common first feature among converted users, and the only feature used at equal rates by principals and practitioners. It draws in users who never return and users who become the most engaged on the platform. This signals a demand for professional connection. However, the design challenge is building something that adds value that existing tools (WhatsApp, Facebook, etc.) cannot already provide. These could include verified professional credentials, contextual content, district-level peer connection, structured resources.
 
 ### 7. The platform has two distinct user types that need different design
 
@@ -912,7 +896,7 @@ Principals manage the school: finances, staff, compliance, reporting. Practition
 
 <div class="insight-box navy">
 <p class="insight-label">The core design question for a new platform</p>
-<p>What can this platform offer that a practitioner cannot get from paper, WhatsApp, or the tools they already use? The features that show the strongest adoption are the ones with no paper equivalent: community and peer connection, structured curriculum resources, professional development. The features with the weakest adoption are the ones that replicate existing paper workflows without giving anything back. A new platform should lead with genuine new value and earn the right to ask for administrative data entry only once practitioners trust that the platform works for them.</p>
+<p>What can this platform offer that a practitioner cannot get from paper, WhatsApp, or the tools they already use? The features that show the strongest adoption are the ones with no paper equivalent: community and peer connection, structured curriculum resources, professional development. The features with the weakest adoption are the ones that replicate existing paper workflows without giving anything back. A new platform should lead with features offering new value and earn the right to ask for administrative data entry only once practitioners trust that the platform works for them.</p>
 </div>
 
 ---
