@@ -4,7 +4,7 @@
 
 A product analytics case study drawn from real usage data on ECD Connect, a digital platform for early childhood education practitioners and community health workers in South Africa. 
 
-**→ [View the live analysis](https://YOUR_USERNAME.github.io/practitioner-adoption-analytics)**
+**→ [View the live analysis](https://ktich.github.io/practitioner-adoption-analytics)**
 
 ---
 
