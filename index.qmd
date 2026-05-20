@@ -52,13 +52,13 @@ This analysis examines what the platform's usage data reveals about how, and whe
 
 ## Platform scale
 
-Data covers ECD Connect App (open access) and ECD Connect Partner (white-label) tenants. ECD Connect Partner launched in October 2024 and ECD Connect App launched in April 2025. All data covers from launch to *19 May 2026*.
+Data covers ECD Connect App (open access) and ECD Connect Partner (white-label) tenants. ECD Connect Partner launched in October 2024 and ECD Connect App launched in April 2025. All data covers from launch to *20 May 2026*.
 
 <div class="stat-block">
-  <div class="stat-card teal"><p class="stat-number">3,276</p><p class="stat-label">Registered users</p></div>
-  <div class="stat-card green"><p class="stat-number">1,384</p><p class="stat-label">Converted users (valid preschool)</p></div>
-  <div class="stat-card yellow"><p class="stat-number">977</p><p class="stat-label">Preschools added</p></div>
-  <div class="stat-card pink"><p class="stat-number">4,141</p><p class="stat-label">Children registered</p></div>
+  <div class="stat-card teal"><p class="stat-number">3,319</p><p class="stat-label">Registered users</p></div>
+  <div class="stat-card green"><p class="stat-number">1,388</p><p class="stat-label">Converted users (valid preschool)</p></div>
+  <div class="stat-card yellow"><p class="stat-number">981</p><p class="stat-label">Preschools added</p></div>
+  <div class="stat-card pink"><p class="stat-number">4,151</p><p class="stat-label">Children registered</p></div>
 </div>
 
 **Conversion rate: 42%** of registered users complete onboarding to the point of a valid preschool connection. This analysis examines what drives conversion, which features sustain engagement, and what the data reveals about how practitioners actually adopt digital tools in this context.
@@ -739,7 +739,7 @@ Principals manage the school: finances, staff, compliance, reporting. Practition
 
 ## Methodology note
 
-All data is aggregate and anonymised. No individual practitioner, preschool, or child data is reported. Analysis covers ECD Connect App (open access, launched April 2025) and ECD Connect Partner white-label tenants (launched October 2024), through 19 May 2026.
+All data is aggregate and anonymised. No individual practitioner, preschool, or child data is reported. Analysis covers ECD Connect App (open access, launched April 2025) and ECD Connect Partner white-label tenants (launched October 2024), through 20 May 2026.
 
 Conversion is defined as having at least one valid preschool connection established. Users are deduplicated by phone number, taking the most recent account where duplicates exist. Feature engagement reflects lifetime usage through the analysis date.
 
